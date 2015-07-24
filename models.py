@@ -10,7 +10,9 @@ class Todo(db.Model):
 	title = db.Column(db.String)
 	description = db.Column(db.String)	
 
-	def __init__(self):
+	def __init__(self, title, description):
+		self.title = title
+		self.description = description
 		return None
 
 	def add(self):
@@ -24,6 +26,6 @@ class Todo(db.Model):
 	def edit(self, title, description):
 		self.title = title
 		self.description = description
-
+		
 	def __repr__(self):
 		return '%s:%s' % (self.title, self.description)

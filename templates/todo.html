@@ -3,17 +3,37 @@
 <html>
 	<head>
 		<title>Jay's Todo List</title>
+		<script type="text/javascript" src"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 	</head>
 
-	<body>
-		<h1>Welcome to Jay's Todo List!</h1>
-		<h2>Add an item:</h2>
+	<body style="width:60%;margin:auto">
+		<h1 style="text-align:center">Welcome to Jay's Todo List!</h1>
+		<h2 style="text-align:center">Add an item:</h2>
 		<form action="/add" method="post">
-			Title: <input name="title" type="text" />
-			<br /><br />
-			Description: <input name="description" type="text" />
-			<br /><br />
-			<input name="submit" type="submit" />
+			<div style="margin:auto">
+				<table class="table">
+					<tr>
+						<td>Title:</td><td><input name="title" type="text" /></td>
+
+						<td>Description:</td><td><input name="description" type="text" style="width:300px" /></td>
+					</tr>
+				</table>
+	
+			</div>
+			<div style="margin:auto;text-align:center">
+				<input style="margin:auto" name="submit" type="submit" />
+			</div>
 		</form>
+
+		<div style="margin:auto;text-align:center">
+			<br /><h2>To Do List</h2>
+			{% for elem in list | reverse %}
+				<b>{{ elem.title }}</b><br />
+				{{ elem.description }}<br />
+			<a href="/delete?id={{ elem.id }}">Delete</a><br /><br />
+			{% endfor %}
+		</div>
+
 	</body>
 </html>

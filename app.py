@@ -7,17 +7,13 @@ app.debug = True
 
 @app.route('/', methods=['GET','POST'])
 def hello():
-	return render_template("todo.html")
+	list = Todo.query.all()
+	return render_template("todo.html", list=list)
 
 @app.route('/add', methods=['POST'])
 def add():
-	item = Todo()
-	
-	item.title = request.form["title"]
-	item.description = request.form["description"]
-
+	item = Todo(request.form["title"], request.form["description"])
 	item.add()
-
 	return redirect('/')
 
 @app.route('/delete', methods=['GET'])
@@ -28,11 +24,7 @@ def delete():
 
 @app.route('/edit', methods=['GET','POST'])
 def edit():
-	if not request.form:
-		print "Not form"
-	else:
-		print "Form"
-	return "Hello World"
+	return redirect('/')
 
 if __name__ == "__main__":
 	app.run()
