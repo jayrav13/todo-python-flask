@@ -26,6 +26,7 @@ class Todo(db.Model):
 	def edit(self, title, description):
 		self.title = title
 		self.description = description
+		db.session.commit()
 		
 	def __repr__(self):
 		return '%s:%s' % (self.title, self.description)

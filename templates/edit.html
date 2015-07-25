@@ -9,13 +9,13 @@
 
 	<body style="width:60%;margin:auto">
 		<h1 style="text-align:center">Welcome to Jay's Todo List!</h1>
-		<h2 style="text-align:center">Add an item:</h2>
-		<form action="/add{{ addon }}" method="post">
+		<h2 style="text-align:center">Edit your item:</h2>
+		<form action="/edit?id={{ item.id }}" method="post">
 			<div style="margin:auto">
 				<table class="table">
 					<tr>
-						<td>Title:</td><td><input name="title" type="text"/></td>
-						<td>Description:</td><td><input name="description" type="text" style="width:300px" /></td>
+						<td>Title:</td><td><input name="title" type="text" value="{{ item.title }}"/></td>
+						<td>Description:</td><td><input name="description" value="{{ item.description }}"type="text" style="width:300px" /></td>
 					</tr>
 				</table>
 	
@@ -24,16 +24,5 @@
 				<input style="margin:auto" name="submit" type="submit" />
 			</div>
 		</form>
-
-		<div style="margin:auto;text-align:center">
-			<br /><h2>To Do List</h2>
-			{% for elem in list | reverse %}
-				<b>{{ elem.title }}</b><br />
-				{{ elem.description }}<br />
-			<a href="/delete?id={{ elem.id }}">Delete</a> | <a href="/edit?id={{ elem.id }}">Edit</a>
-			<br /><br />
-			{% endfor %}
-		</div>
-
 	</body>
 </html>
